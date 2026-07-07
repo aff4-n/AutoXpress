@@ -1,7 +1,7 @@
 const CACHE = 'autoxpress-v2';
 const ASSETS = [
   './', './index.html', './manifest.json',
-  './css/style.css',
+  './css/style.css?v=2',
   'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js', // <-- ADD THIS
   './js/icons.js', './js/utils.js', './js/storage.js', './js/notifications.js', './js/theme.js',
   './js/metrics.js', './js/dashboard.js', './js/inventory.js', './js/sales.js', './js/investment.js',
