@@ -1,4 +1,4 @@
-const CACHE = 'autoxpress-v1';
+const CACHE = 'autoxpress-v2';
 const ASSETS = [
   './', './index.html', './manifest.json',
   './css/style.css',
