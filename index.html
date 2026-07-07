@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Auto Xpress — Dealership Terminal</title>
+<meta name="theme-color" content="#0A0A0A">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ LOGIN SCREEN ============ -->
+<div id="loginScreen" class="screen login-screen">
+  <div class="login-bg-grid"></div>
+  <div class="login-card glass">
+    <div class="login-brand">
+      <div class="brand-mark">AX</div>
+      <div class="brand-text">
+        <h1>Auto Xpress</h1>
+        <span>Dealership Terminal</span>
+      </div>
+    </div>
+    <form id="loginForm" autocomplete="off">
+      <label class="field">
+        <span>Username</span>
+        <input type="text" id="loginUser" placeholder="admin" required>
+      </label>
+      <label class="field">
+        <span>Password</span>
+        <input type="password" id="loginPass" placeholder="••••••••" required>
+      </label>
+      <div id="loginError" class="login-error"></div>
+      <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+    </form>
+    <p class="login-hint">Abasit / Basit_123</p>
+  </div>
+</div>
+
+<!-- ============ ONBOARDING: INITIAL INVESTMENT ============ -->
+<div id="onboardScreen" class="screen onboard-screen hidden">
+  <div class="login-card glass">
+    <div class="login-brand">
+      <div class="brand-mark">AX</div>
+      <div class="brand-text">
+        <h1>Welcome</h1>
+        <span>Let's capitalize your dealership</span>
+      </div>
+    </div>
+    <form id="onboardForm" autocomplete="off">
+      <label class="field">
+        <span>Initial Investment</span>
+        <input type="number" id="onboardAmount" placeholder="0.00" min="0" step="0.01" required>
+      </label>
+      <label class="field">
+        <span>Default Currency</span>
+        <select id="onboardCurrency">
+          <option value="USD">USD — US Dollar</option>
+          <option value="PKR">PKR — Pakistani Rupee</option>
+          <option value="AED">AED — UAE Dirham</option>
+          <option value="GBP">GBP — British Pound</option>
+          <option value="EUR">EUR — Euro</option>
+          <option value="INR">INR — Indian Rupee</option>
+        </select>
+      </label>
+      <button type="submit" class="btn btn-primary btn-block">Launch Terminal</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ APP SHELL ============ -->
+<div id="appShell" class="app-shell hidden">
+
+  <!-- Ticker: floating cash indicator, signature element -->
+  <div id="cashTicker" class="cash-ticker">
+    <div class="ticker-item">
+      <span class="ticker-label">CASH</span>
+      <span class="ticker-value" id="tickerCash">$0.00</span>
+    </div>
+    <div class="ticker-divider"></div>
+    <div class="ticker-item">
+      <span class="ticker-label">NET WORTH</span>
+      <span class="ticker-value" id="tickerNetWorth">$0.00</span>
+    </div>
+    <div class="ticker-divider"></div>
+    <div class="ticker-item">
+      <span class="ticker-label">STOCK</span>
+      <span class="ticker-value" id="tickerStock">0</span>
+    </div>
+  </div>
+
+  <!-- Sidebar (desktop) -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark small">AX</div>
+      <span>Auto Xpress</span>
+    </div>
+    <div class="sidebar-nav">
+      <button class="nav-item active" data-view="dashboard"><i data-icon="grid"></i><span>Dashboard</span></button>
+      <button class="nav-item" data-view="inventory"><i data-icon="car"></i><span>Inventory</span></button>
+      <button class="nav-item" data-view="sales"><i data-icon="tag"></i><span>Sales</span></button>
+      <button class="nav-item" data-view="analytics"><i data-icon="chart"></i><span>Analytics</span></button>
+      <button class="nav-item" data-view="reports"><i data-icon="doc"></i><span>Reports</span></button>
+      <button class="nav-item" data-view="investment"><i data-icon="bank"></i><span>Investment</span></button>
+      <button class="nav-item" data-view="settings"><i data-icon="gear"></i><span>Settings</span></button>
+    </div>
+    <button class="sidebar-logout" id="logoutBtn"><i data-icon="exit"></i><span>Logout</span></button>
+  </nav>
+
+  <!-- Main content -->
+  <main class="main-content" id="mainContent">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-title">
+        <h2 id="viewTitle">Dashboard</h2>
+        <span id="viewSubtitle">Real-time overview of your dealership</span>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="themeToggle" title="Toggle theme"><i data-icon="moon"></i></button>
+        <button class="btn btn-primary btn-sm" id="quickAddBtn"><i data-icon="plus"></i> Quick Add</button>
+      </div>
+    </header>
+
+    <!-- Views -->
+    <section id="view-dashboard" class="view active"></section>
+    <section id="view-inventory" class="view"></section>
+    <section id="view-vehicle" class="view"></section>
+    <section id="view-sales" class="view"></section>
+    <section id="view-analytics" class="view"></section>
+    <section id="view-reports" class="view"></section>
+    <section id="view-investment" class="view"></section>
+    <section id="view-settings" class="view"></section>
+
+  </main>
+
+  <!-- Bottom nav (mobile) -->
+  <nav class="bottom-nav" id="bottomNav">
+    <button class="bnav-item active" data-view="dashboard"><i data-icon="grid"></i><span>Home</span></button>
+    <button class="bnav-item" data-view="inventory"><i data-icon="car"></i><span>Stock</span></button>
+    <button class="bnav-fab" id="fabAdd"><i data-icon="plus"></i></button>
+    <button class="bnav-item" data-view="analytics"><i data-icon="chart"></i><span>Stats</span></button>
+    <button class="bnav-item" data-view="settings"><i data-icon="gear"></i><span>More</span></button>
+  </nav>
+
+</div>
+
+<!-- ============ MODAL ROOT ============ -->
+<div id="modalRoot"></div>
+
+<!-- ============ TOAST ROOT ============ -->
+<div id="toastRoot" class="toast-root"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/metrics.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/inventory.js"></script>
+<script src="js/sales.js"></script>
+<script src="js/investment.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
