@@ -476,18 +476,24 @@ input,select,textarea{ font-family:inherit; }
   }
 
   /* 4. Fix top bar layout for smaller titles */
+  /* 6. Reposition, stretch, and cleanly center top layout headers */
   .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 12px 4px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important; /* Forces the children to stretch across the full width */
+    gap: 12px;
+    margin-bottom: 20px;
+    width: 100%;
   }
-  
-  /* 5. Keep the floating ticker looking clean */
+
   .cash-ticker {
-    width: calc(100% - 24px);
-    margin: 8px auto;
+    width: 100%;
+    display: flex !important;
+    justify-content: space-around; /* Distributes items inside evenly so they center perfectly */
+    align-items: center;
+    padding: 10px 16px;
     font-size: 11px;
-    padding: 8px;
+    border-radius: 8px;
+    box-sizing: border-box;
   }
 }
