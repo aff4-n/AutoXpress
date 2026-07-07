@@ -440,12 +440,13 @@ input,select,textarea{ font-family:inherit; }
 .w-full{ width:100%; }
 
 /* ================= MOBILE RESPONSIVE OVERRIDES ================= */
+/* ================= MOBILE RESPONSIVE OVERRIDES ================= */
 @media screen and (max-width: 768px) {
   /* 1. Reset the main application structure */
   .app-shell {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 70px; /* Space so the bottom mobile nav doesn't cover content */
+    display: flex !important;
+    flex-direction: column !important;
+    padding-bottom: 70px !important;
   }
 
   /* 2. Hide desktop sidebar, let main content fill the screen width */
@@ -457,43 +458,49 @@ input,select,textarea{ font-family:inherit; }
     margin-left: 0 !important;
     padding: 12px !important;
     width: 100% !important;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
   }
 
   /* 3. Drop grids down to 1 single column so they stop squeezing */
   .stat-grid {
-    display: grid;
-    grid-template-columns: 1fr !important; /* Stack cards vertically */
+    display: grid !important;
+    grid-template-columns: 1fr !important;
     gap: 12px !important;
-    width: 100%;
+    width: 100% !important;
   }
 
   .chart-grid {
-    display: grid;
-    grid-template-columns: 1fr !important; /* Stack charts vertically */
+    display: grid !important;
+    grid-template-columns: 1fr !important;
     gap: 16px !important;
-    width: 100%;
+    width: 100% !important;
   }
 
-  /* 4. Fix top bar layout for smaller titles */
-  /* 6. Reposition, stretch, and cleanly center top layout headers */
+  /* 4. Force topbar flex wrapper to fill parent containers */
   .topbar {
     display: flex !important;
     flex-direction: column !important;
-    align-items: stretch !important; /* Forces the children to stretch across the full width */
-    gap: 12px;
-    margin-bottom: 20px;
-    width: 100%;
+    align-items: stretch !important;
+    gap: 12px !important;
+    margin-bottom: 20px !important;
+    width: 100% !important;
   }
 
+  /* 5. Cleaned & Reset Cash Ticker */
   .cash-ticker {
-    width: 100%;
+    position: relative !important; /* Disengage sticky/fixed alignment conflicts */
+    top: 0 !important;
+    left: 0 !important;          /* Kill the desktop 50% offset */
+    transform: none !important;   /* Kill the desktop translate pull */
+    width: 100% !important;        /* Fill out the stretched topbar container */
+    margin: 8px 0 !important;
+    
     display: flex !important;
-    justify-content: space-around; /* Distributes items inside evenly so they center perfectly */
-    align-items: center;
-    padding: 10px 16px;
-    font-size: 11px;
-    border-radius: 8px;
-    box-sizing: border-box;
+    justify-content: space-around !important; /* Space items out evenly to stay centered */
+    align-items: center !important;
+    padding: 12px 16px !important;
+    font-size: 11px !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
   }
 }
